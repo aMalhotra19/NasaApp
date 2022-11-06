@@ -14,12 +14,12 @@ struct NasaAPIResponse: Decodable {
 // MARK: - Collection
 struct Collection: Decodable {
     let href: String
-    let items: [Items]
+    let items: [Item]
     let links: [PageReference]
 }
 
 // MARK: - Items
-struct Items: Decodable {
+struct Item: Decodable {
     let data: [ImageData]
     let links: [ItemLink]
 }
@@ -35,6 +35,10 @@ struct ImageData: Decodable {
         case dataDescription = "description"
         case dateCreated = "date_created"
     }
+}
+
+extension Item: Identifiable {
+    var id: String? { links.first?.href }
 }
 
 // MARK: - ItemLink
