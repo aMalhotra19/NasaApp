@@ -25,6 +25,10 @@ struct NasaApi {
         return decoder
     }()
     
+    func search(from query: String, for mediaType: String) async throws -> NasaAPIResponse {
+        try await fetchData(from: generateSearchURL(from: query, for: mediaType))
+    }
+    
     private func fetchData(from url: URL) async throws -> NasaAPIResponse {
         let (data, response) = try await session.data(from: url)
         
