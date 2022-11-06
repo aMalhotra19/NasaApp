@@ -14,6 +14,7 @@ enum FetchPhase<T> {
     case failure(Error) // error
 }
 
+@MainActor
 class SearchViewModel: ObservableObject {
     @Published var searchQuery: String = ""
     let historyDataStore = ["mars", "space", "earth"]

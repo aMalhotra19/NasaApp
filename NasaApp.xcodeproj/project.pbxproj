@@ -19,6 +19,7 @@
 		9D0237ED29175B12009CB6AD /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237EC29175B12009CB6AD /* SearchViewModel.swift */; };
 		9D0237F029175C21009CB6AD /* NasaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237EF29175C21009CB6AD /* NasaAPI.swift */; };
 		9D0237F22917A55D009CB6AD /* EmptyPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237F12917A55D009CB6AD /* EmptyPlaceholderView.swift */; };
+		9D0237F42917A9C1009CB6AD /* ImageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237F32917A9C1009CB6AD /* ImageListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		9D0237EC29175B12009CB6AD /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		9D0237EF29175C21009CB6AD /* NasaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaAPI.swift; sourceTree = "<group>"; };
 		9D0237F12917A55D009CB6AD /* EmptyPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPlaceholderView.swift; sourceTree = "<group>"; };
+		9D0237F32917A9C1009CB6AD /* ImageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				9D0237BD29175129009CB6AD /* ContentView.swift */,
+				9D0237F32917A9C1009CB6AD /* ImageListView.swift */,
 				9D0237EA29175AEE009CB6AD /* SearchView.swift */,
 				9D0237F12917A55D009CB6AD /* EmptyPlaceholderView.swift */,
 			);
@@ -304,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D0237F42917A9C1009CB6AD /* ImageListView.swift in Sources */,
 				9D0237EB29175AEE009CB6AD /* SearchView.swift in Sources */,
 				9D0237F029175C21009CB6AD /* NasaAPI.swift in Sources */,
 				9D0237ED29175B12009CB6AD /* SearchViewModel.swift in Sources */,

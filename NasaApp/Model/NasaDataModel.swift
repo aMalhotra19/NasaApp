@@ -27,8 +27,8 @@ struct Items: Decodable {
 // MARK: - ImageData
 struct ImageData: Decodable {
     let title: String
-    let dataDescription: String?
-    let dateCreated: Date?
+    let dataDescription: String
+    let dateCreated: Date
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -39,8 +39,7 @@ struct ImageData: Decodable {
 
 // MARK: - ItemLink
 struct ItemLink: Codable {
-    let href: String?
-    let rel, render: String?
+    let href: String
 }
 
 // MARK: - Page

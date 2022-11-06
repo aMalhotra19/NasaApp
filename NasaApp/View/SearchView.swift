@@ -47,14 +47,15 @@ struct SearchView: View {
                 EmptyPlaceholderView(text: "Search", image: Image(systemName: "magnifyingglass"))
             }
         case .success(let apiResponse):
-            if apiResponse.collection.items.isEmpty {
+            let items = apiResponse.collection.items
+            if items.isEmpty {
                 EmptyView()
             } else {
-                // ListView
+                ImageListView(imageList: items)
             }
             
         case .failure(let error):
-            EmptyView() // Error view
+            EmptyPlaceholderView(text: error.localizedDescription, image: Image(systemName: "exclamationmark.triangle")) // Error view
         }
     }
 }
