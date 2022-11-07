@@ -12,11 +12,16 @@ struct SearchView: View {
     
     var body: some View {
         NavigationView {
-            landingView()
+            LandingView()
                 .navigationTitle("Nasa Image Search")
         }
         .searchable(text: $viewModel.searchQuery) { suggestionsView }
         .onSubmit(of: .search, search)
+        .onChange(of: viewModel.searchQuery) { newValue in
+            if newValue.isEmpty {
+                viewModel.phase = .empty
+            }
+        }
     }
     
     func search() {
@@ -38,7 +43,7 @@ struct SearchView: View {
     }
     
     @ViewBuilder
-    private func landingView() -> some View {
+    private func LandingView() -> some View {
         switch viewModel.phase {
         case .empty:
             if !viewModel.searchQuery.isEmpty {
@@ -46,16 +51,15 @@ struct SearchView: View {
             } else {
                 EmptyPlaceholderView(text: "Search", image: Image(systemName: "magnifyingglass"))
             }
-        case .success(let apiResponse):
-            let items = apiResponse.collection.items
-            if items.isEmpty {
-                EmptyView()
+        case .success(let collection):
+            if collection.isEmpty {
+                EmptyPlaceholderView(text: "No Data available at this time. Try again Later", image: Image(systemName: "exclamationmark.triangle"))
             } else {
-                ImageListView(imageList: items)
+                ImageListView(viewModel: viewModel)
             }
             
         case .failure(let error):
-            EmptyPlaceholderView(text: error.localizedDescription, image: Image(systemName: "exclamationmark.triangle")) // Error view
+            EmptyPlaceholderView(text: error.localizedDescription, image: Image(systemName: "exclamationmark.triangle"))
         }
     }
 }

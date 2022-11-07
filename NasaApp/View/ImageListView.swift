@@ -8,23 +8,25 @@
 import SwiftUI
 
 struct ImageListView: View {
-    let imageList: [Item]
+    @ObservedObject var viewModel: SearchViewModel
     @State private var selectedItem: Item?
     var body: some View {
         List {
-            ForEach(imageList, id: \.links.first?.href) { item in
-                ImageRowView(item: item)
-                    .onTapGesture {
-                        selectedItem = item
-                    }
+            ForEach(viewModel.collection, id: \.id) { item in
+                NavigationLink {
+                    ImageDetailView(item: item)
+                } label: {
+                    ImageRowView(item: item)
+                        .task {
+                            if viewModel.reachedEnd(of: item) && !viewModel.isFetching {
+                                await viewModel.fetchNextSetOfData()
+                            }
+                        }
+                }
             }
             .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
-        
-        .fullScreenCover(item: $selectedItem) { details in
-            ImageDetailView(item: details)
-        }
     }
 }
 
@@ -33,6 +35,6 @@ struct ImageListView_Previews: PreviewProvider {
         let imageData = ImageData(title: "Earth", dataDescription: "Dummmy Data", dateCreated: Date())
         let itemLink = ItemLink(href: "https://images-assets.nasa.gov/image/PIA16573/PIA16573~thumb.jpg")
         let item = Item(data: [imageData], links: [itemLink])
-        ImageListView(imageList: [item])
+        ImageListView(viewModel: SearchViewModel())
     }
 }

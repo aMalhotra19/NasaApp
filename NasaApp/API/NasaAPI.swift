@@ -25,8 +25,8 @@ struct NasaApi {
         return decoder
     }()
     
-    func search(from query: String, for mediaType: String) async throws -> NasaAPIResponse {
-        try await fetchData(from: generateSearchURL(from: query, for: mediaType))
+    func search(from query: String, for mediaType: String, page: Int) async throws -> NasaAPIResponse {
+        try await fetchData(from: generateSearchURL(from: query, for: mediaType, page: page))
     }
     
     private func fetchData(from url: URL) async throws -> NasaAPIResponse {
@@ -46,11 +46,12 @@ struct NasaApi {
         }
     }
     
-    private func generateSearchURL(from query: String, for mediaType: String) -> URL {
+    private func generateSearchURL(from query: String, for mediaType: String, page: Int) -> URL {
         let percentEncodedString = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
         var urlString = "https://images-api.nasa.gov/search?"
         urlString += "&q=\(percentEncodedString)"
         urlString += "&media_type=\(Constants.mediaType)"
+        urlString += "&page=\(page)"
         return URL(string: urlString)!
     }
     
