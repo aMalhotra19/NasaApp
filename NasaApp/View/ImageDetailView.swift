@@ -8,14 +8,44 @@
 import SwiftUI
 
 struct ImageDetailView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     let item: Item
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            let data = item.data.first
+            
+            if let urlString = item.id, let url = URL(string: urlString) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 230)
+                        .clipped()
+                        .padding(.top, 0)
+                } placeholder: {
+                    Color.gray
+                }
+            }
+            if let description = data?.dataDescription {
+                Text(description)
+                    .padding(.vertical, 10)
+            }
+            if let dateCreated = data?.dateCreated {
+                Text("\(dateCreated)")
+            }
+            Spacer()
+        }
+        .padding(.all, 10.0)
+        .navigationTitle(item.data.first?.title ?? "")
     }
 }
 
 struct ImageDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageDetailView()
+        let imageData = ImageData(title: "Earth", dataDescription: "Dummmy Data", dateCreated: Date())
+        let itemLink = ItemLink(href: "https://freepngimg.com/thumb/cartoon/3-2-cartoon-free-png-image-thumb.png")
+        let item = Item(data: [imageData], links: [itemLink])
+        ImageDetailView(item: item)
     }
 }
