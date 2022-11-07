@@ -41,6 +41,7 @@ struct ImageRowView: View {
             }
         }
     }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             if let data = item.data.first, let title = data.title {

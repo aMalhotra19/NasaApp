@@ -39,26 +39,27 @@ struct SearchView: View {
             } label: {
                 Text(text)
             }
+            .buttonStyle(.plain)
         }
     }
     
     @ViewBuilder
     private func LandingView() -> some View {
         switch viewModel.phase {
-        case .empty:
+        case .empty: // Default state when screen is first loaded
             if !viewModel.searchQuery.isEmpty {
                 ProgressView()
             } else {
                 EmptyPlaceholderView(text: "Search", image: Image(systemName: "magnifyingglass"))
             }
-        case .success(let collection):
+        case .success(let collection): // Updates the view after returning from API call success response
             if collection.isEmpty {
                 EmptyPlaceholderView(text: "No Data available at this time. Try again Later", image: Image(systemName: "exclamationmark.triangle"))
             } else {
                 ImageListView(viewModel: viewModel)
             }
             
-        case .failure(let error):
+        case .failure(let error): // Error UI, when API fails
             EmptyPlaceholderView(text: error.localizedDescription, image: Image(systemName: "exclamationmark.triangle"))
         }
     }

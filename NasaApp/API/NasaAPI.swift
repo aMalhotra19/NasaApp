@@ -11,6 +11,9 @@ struct Constants {
     static let mediaType = "image"
 }
 
+// Contains API initialization, Session URL, JSON data decode, search(query, mediaType, page), fetchData response status code function, generateSearchURL(query, mediaType, page), generateError for NASA Api
+
+// Future implementation to seperate API service in seperate module
 struct NasaApi {
     static let shared = NasaApi()
     private init() {}
@@ -29,9 +32,11 @@ struct NasaApi {
         try await fetchData(from: generateSearchURL(from: query, for: mediaType, page: page))
     }
     
+    // Function Fetching Data and Response Code from URL
     private func fetchData(from url: URL) async throws -> NasaAPIResponse {
         let (data, response) = try await session.data(from: url)
         
+        // Error handling response from API Provider
         guard let response = response as? HTTPURLResponse else {
             throw generateError(description: "Bad response")
         }
@@ -46,6 +51,7 @@ struct NasaApi {
         }
     }
     
+    // Function Generate Search URL
     private func generateSearchURL(from query: String, for mediaType: String, page: Int) -> URL {
         let percentEncodedString = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
         var urlString = "https://images-api.nasa.gov/search?"
@@ -55,6 +61,7 @@ struct NasaApi {
         return URL(string: urlString)!
     }
     
+    // Function Generate Error Domain
     private func generateError(code: Int = 1, description: String) -> Error {
         NSError(domain: "NasaApi", code: code, userInfo: [NSLocalizedDescriptionKey: description])
     }

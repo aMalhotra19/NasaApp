@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ImageDetailView: View {
-    @Environment(\.dismiss) private var dismiss
     
     let item: Item
     var body: some View {
