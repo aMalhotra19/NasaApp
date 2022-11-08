@@ -11,6 +11,8 @@ import SwiftUI
 /// Implements EmptyPlaceholder when the api fails or in default scenario
 struct SearchView: View {
     @StateObject var viewModel: SearchViewModel = SearchViewModel()
+    @Environment(\.dismissSearch) var dismissSearch
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationView {
@@ -39,11 +41,14 @@ struct SearchView: View {
         ForEach(viewModel.historyDataStore, id: \.self) { text in
             Button {
                 viewModel.searchQuery = text
+                dismiss()
+                dismissSearch()
             } label: {
                 Text(text)
             }
             .buttonStyle(.plain)
         }
+        .listRowSeparator(.hidden)
     }
     
     @ViewBuilder
