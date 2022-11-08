@@ -20,6 +20,7 @@
 		9D0237F42917A9C1009CB6AD /* ImageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237F32917A9C1009CB6AD /* ImageListView.swift */; };
 		9D0237F62917BC47009CB6AD /* ImageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237F52917BC47009CB6AD /* ImageRowView.swift */; };
 		9D0237F82917C0F3009CB6AD /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237F72917C0F3009CB6AD /* ImageDetailView.swift */; };
+		9D0237FE2919E540009CB6AD /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0237FD2919E540009CB6AD /* CacheAsyncImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		9D0237F32917A9C1009CB6AD /* ImageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListView.swift; sourceTree = "<group>"; };
 		9D0237F52917BC47009CB6AD /* ImageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRowView.swift; sourceTree = "<group>"; };
 		9D0237F72917C0F3009CB6AD /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
+		9D0237FD2919E540009CB6AD /* CacheAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheAsyncImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				9D0237BB29175129009CB6AD /* NasaAppApp.swift */,
+				9D0237FA2919E516009CB6AD /* Utility */,
 				9D0237EE29175C0B009CB6AD /* API */,
 				9D0237E7291753C5009CB6AD /* Model */,
 				9D0237E6291753BC009CB6AD /* ViewModel */,
@@ -151,6 +154,14 @@
 				9D0237EF29175C21009CB6AD /* NasaAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		9D0237FA2919E516009CB6AD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9D0237FD2919E540009CB6AD /* CacheAsyncImage.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 				9D0237ED29175B12009CB6AD /* SearchViewModel.swift in Sources */,
 				9D0237BE29175129009CB6AD /* ContentView.swift in Sources */,
 				9D0237F22917A55D009CB6AD /* EmptyPlaceholderView.swift in Sources */,
+				9D0237FE2919E540009CB6AD /* CacheAsyncImage.swift in Sources */,
 				9D0237F62917BC47009CB6AD /* ImageRowView.swift in Sources */,
 				9D0237E929175A9C009CB6AD /* NasaDataModel.swift in Sources */,
 				9D0237BC29175129009CB6AD /* NasaAppApp.swift in Sources */,

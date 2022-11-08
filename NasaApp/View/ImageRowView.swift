@@ -13,8 +13,8 @@ struct ImageRowView: View {
     
     @ViewBuilder
     var avatar: some View {
-        if let link = item.links.first, !link.href.isEmpty {
-            AsyncImage(url: .init(string: link.href)) { phase in
+        if let link = item.links.first, !link.href.isEmpty, let url = URL(string: link.href) {
+            CacheAsyncImage(url: url) { phase in
                 switch phase {
                 case .empty:
                     HStack(alignment: .center) { // Wrapper Horizontal progress icon photo

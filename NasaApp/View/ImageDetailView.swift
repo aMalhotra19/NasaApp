@@ -15,16 +15,30 @@ struct ImageDetailView: View {
             let data = item.data.first
             
             if let urlString = item.id, let url = URL(string: urlString) {
-                AsyncImage(url: url) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: 230)
-                        .clipped()
-                        .padding(.top, 0)
-                } placeholder: {
-                    Color.gray
-                        .frame(height: 230)
+                CacheAsyncImage(url: url) { phase in
+                    switch phase {
+                    case .empty:
+                        HStack(alignment: .center) { // Wrapper Horizontal progress icon photo
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                    case .success(let image):
+                        // Success scenario
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(height: 130)
+                            .clipped()
+                    case .failure(_):
+                        HStack { // Wrapper Horizontal failure icon photo
+                            Spacer()
+                            Image(systemName: "exclamationmark.triangle").imageScale(.large)
+                            Spacer()
+                        }
+                    default:
+                        EmptyView()
+                    }
                 }
             }
             if let description = data?.dataDescription {
