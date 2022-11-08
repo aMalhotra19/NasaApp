@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Implements ImageListView for list of items
+/// Displays ImageRowView and navigated to ImageDetailView on tap of each row
 struct ImageListView: View {
     @ObservedObject var viewModel: SearchViewModel
     @State private var selectedItem: Item?

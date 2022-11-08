@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// Implements ImageRowView
+/// Displays Image and title for the image
 struct ImageRowView: View {
     let item: Item
     var itemImage: Image?

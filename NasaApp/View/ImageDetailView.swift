@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Implements ImageDetailView
+/// Displays title in navigation bar
+/// Displays Image, description and date created in body
 struct ImageDetailView: View {
     
     let item: Item

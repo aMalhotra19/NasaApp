@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Implements empty placeholder
+/// param: text to display on UI
+/// param: image to display image based on the response
 struct EmptyPlaceholderView: View {
     
     let text: String

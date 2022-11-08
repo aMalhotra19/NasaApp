@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-// SearchView with 
+/// SearchView with search option using NASA API, with a dropdown hardcoded suggestion list
+/// Implements EmptyPlaceholder when the api fails or in default scenario
 struct SearchView: View {
     @StateObject var viewModel: SearchViewModel = SearchViewModel()
     
@@ -25,6 +26,7 @@ struct SearchView: View {
         }
     }
     
+    // Search for results based on user query param
     func search() {
         Task {
             await viewModel.search()
