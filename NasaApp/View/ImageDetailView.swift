@@ -24,6 +24,7 @@ struct ImageDetailView: View {
                         .padding(.top, 0)
                 } placeholder: {
                     Color.gray
+                        .frame(height: 230)
                 }
             }
             if let description = data?.dataDescription {

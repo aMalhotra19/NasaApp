@@ -35,8 +35,6 @@ struct ImageListView: View {
 
 struct ImageListView_Previews: PreviewProvider {
     static var previews: some View {
-        let imageData = ImageData(title: "Earth", dataDescription: "Dummmy Data", dateCreated: Date())
-        let itemLink = ItemLink(href: "https://images-assets.nasa.gov/image/PIA16573/PIA16573~thumb.jpg")
         ImageListView(viewModel: SearchViewModel())
     }
 }
