@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol APIServiceProtocol {
+    func search(from query: String, for mediaType: String, page: Int) async throws -> NasaAPIResponse
+}
+
 struct Constants {
     static let mediaType = "image"
 }
@@ -14,7 +18,7 @@ struct Constants {
 // Contains API initialization, Session URL, JSON data decode, search(query, mediaType, page), fetchData response status code function, generateSearchURL(query, mediaType, page), generateError for NASA Api
 
 // Future implementation to seperate API service in seperate module
-struct NasaApi {
+struct NasaApi: APIServiceProtocol {
     static let shared = NasaApi()
     private init() {}
     

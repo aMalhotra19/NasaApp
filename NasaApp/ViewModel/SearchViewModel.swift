@@ -18,7 +18,6 @@ enum FetchPhase<T> {
 @MainActor // Main data fetch queue (Main thread)
 class SearchViewModel: ObservableObject {
     @Published var searchQuery: String = ""
-    let historyDataStore = ["mars", "space", "earth"] // Dummmy list. Future implementation for a dataStore such as plist to save user last search
     @Published var collection: [Item] = []
     @Published var phase: FetchPhase = FetchPhase<[Item]>.empty
     @Published private(set) var viewState: ViewState?
@@ -26,10 +25,11 @@ class SearchViewModel: ObservableObject {
     private var page = 1
     private let totalPages = 100
     
-    let api: NasaApi
+    let api: APIServiceProtocol
+    let historyDataStore = ["mars", "space", "earth"] // Dummmy list. Future implementation for a dataStore such as plist to save user last search
     
     // NASA API object as a initializer Dependency, can be passed from parent or testable code
-    init(api: NasaApi = NasaApi.shared) {
+    init(api: APIServiceProtocol = NasaApi.shared) {
         self.api = api
     }
     
@@ -77,9 +77,8 @@ class SearchViewModel: ObservableObject {
         //Check if page do not exceed total page
         guard page <= totalPages else { return }
         page += 1
-        Task {
-            await search()
-        }
+        
+        await search()
     }
 }
 
