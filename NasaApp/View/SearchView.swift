@@ -24,6 +24,7 @@ struct SearchView: View {
         .onChange(of: viewModel.searchQuery) { newValue in
             if newValue.isEmpty {
                 viewModel.phase = .empty
+                viewModel.collection.removeAll()
             }
         }
     }
